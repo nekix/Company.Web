@@ -36,7 +36,7 @@ namespace Company.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Create))]
         public async Task<EmployeeDto> Create([FromBody] CreateUpdateEmployeeDto input)
@@ -48,7 +48,7 @@ namespace Company.Controllers
         }
 
         [HttpPut("{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Put))]
         public async Task<EmployeeDto> Edit(Guid id, [FromBody] CreateUpdateEmployeeDto input)
@@ -60,7 +60,7 @@ namespace Company.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ApiConventionMethod(typeof(DefaultApiConventions),
             nameof(DefaultApiConventions.Delete))]
         public async Task Delete(Guid id)
