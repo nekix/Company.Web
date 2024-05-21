@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Company</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Company.Domain.Shared\Company.Domain.Shared.csproj" />
+    <ProjectReference Include="..\Company.Shared.Utilities\Company.Shared.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

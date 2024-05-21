@@ -1,0 +1,133 @@
+<section class="bg-light">
+    <div class="container mt-5">
+        <h2 class="mb-5 mt-5 text-center">Наши сотрудники</h2>
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <ngx-datatable
+                        class="bootstrap"
+                        [rows]="employees"
+                        [reorderable]="true"
+                        [rowHeight]="45"
+                        [columnMode]="'force'">
+                        <ngx-datatable-column [name]="'Отдел'" prop="department">
+                            <ng-template ngx-datatable-header-template let-column="column" let-sort="sortFn">
+                                <span class="datatable-header-cell-wrapper">
+                                    <span class=" datatable-header-cell-label" (click)="sort()">
+                                        <div>Отдел</div>
+                                    </span>
+                                </span>
+                                <input type="text"
+                                    class="form-control"
+                                    (keyup)="updateDepartmentFilter($event)"/>
+                             </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [name]="'Ф.И.О'" prop="personalInfo.fullName">
+                            <ng-template ngx-datatable-header-template let-column="column" let-sort="sortFn">
+                                <span class="datatable-header-cell-wrapper">
+                                    <span class=" datatable-header-cell-label" (click)="sort()">
+                                        <div>Ф.И.О</div>
+                                    </span>
+                                </span>
+                                <input type="text"      
+                                    class="form-control"                    
+                                    (keyup)="updateFullNameFilter($event)"/>
+                             </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [name]="'Дата рождения'" prop="personalInfo.birthDate">
+                            <ng-template ngx-datatable-header-template let-column="column" let-sort="sortFn">
+                                <form class="row row-cols-sm-auto">
+                                    <span class="col-12 datatable-header-cell-wrapper">
+                                        <span class=" datatable-header-cell-label" (click)="sort()">
+                                            <div>Дата рождения</div>
+                                        </span>
+                                    </span>
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input 
+                                                readonly
+                                                class="form-control"
+                                                name="name"
+                                                [(ngModel)]="birthDateStruct"
+                                                type="text"
+                                                [minDate]="{year: 1900, month: 1, day: 1}"
+                                                container="body"
+                                                ngbDatepicker #dateOfBirthDatePicker="ngbDatepicker"
+                                                (dateSelect)="updateBirthDateFilter($event)"/>
+                                            <i-bs class="btn btn-outline-secondary bi bi-calendar3" (click)="dateOfBirthDatePicker.toggle()" type="button"></i-bs>
+                                        </div>
+                                    </div>
+                                </form>  
+                             </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [name]="'Дата устройства на работу'" prop="employmentDate">
+                            <ng-template ngx-datatable-header-template let-column="column" let-sort="sortFn">
+                                <form class="row row-cols-sm-auto">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <span class="col-12 datatable-header-cell-wrapper">
+                                                <span class=" datatable-header-cell-label" (click)="sort()">
+                                                    <div>Дата устройства на работу</div>
+                                                </span>
+                                            </span>
+                                            <input 
+                                                readonly
+                                                class="form-control"
+                                                name="name"
+                                                [(ngModel)]="emloymentDateStruct"
+                                                type="text"
+                                                container="body"
+                                                [minDate]="{year: 1900, month: 1, day: 1}"
+                                                ngbDatepicker #employmentDatePicker="ngbDatepicker"
+                                                (dateSelect)="updateEmploymentDateFilter($event)"/>
+                                            <i-bs class="btn btn-outline-secondary bi bi-calendar3" (click)="employmentDatePicker.toggle()" type="button"></i-bs>
+                                        </div>  
+                                    </div>
+                                </form>  
+                             </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [name]="'Заработная плата'" prop="monthlySalary">
+                            <ng-template ngx-datatable-header-template let-column="column" let-sort="sortFn">
+                                <span class="datatable-header-cell-wrapper">
+                                    <span class=" datatable-header-cell-label" (click)="sort()">
+                                        <div>Заработная плата</div>
+                                    </span>
+                                </span>
+                                <input type="text"
+                                    class="form-control"
+                                    (keyup)="updateMonthlySalaryFilter($event)"/>
+                             </ng-template>
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{ row.monthlySalary | number }} ₽
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column [name]="'Действия'">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <div ngbDropdown container="body" class="d-inline-block">
+                                  <button
+                                    class="btn btn-primary btn-sm dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    ngbDropdownToggle>
+                                    <i class="fa fa-cog me-1"></i>
+                                  </button>
+                                  <div ngbDropdownMenu>
+                                    <button ngbDropdownItem>
+                                        Создание
+                                    </button>
+                                    <button ngbDropdownItem>
+                                        Удаление
+                                    </button>
+                                    <button ngbDropdownItem>
+                                        Редактирование
+                                    </button>
+                                  </div>
+                                </div>
+                              </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
